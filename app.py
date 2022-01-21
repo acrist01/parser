@@ -1,5 +1,8 @@
 import sys
 
+from services.calendar import Calendar
+from services.parser import Parser
+
 def parse_cron() -> None:
     
     try:    
@@ -9,10 +12,9 @@ def parse_cron() -> None:
             print(f"Invalid command. There should be 6 arguments, following the pattern: {command_format}")
             return
         
-        result = {
-            'minutes' : get_frequency(arguments[0], 'minutes'),
-            'hour': get_frequency(arguments[1], 'hour')
-        }
+        calendar = Calendar()
+        parser = Parser(calendar)
+        result = parser.parse(arguments)
         print(result)
 
     except IndexError:
@@ -20,16 +22,7 @@ def parse_cron() -> None:
         return
     except Exception as e:
         print(f"Something went wrong: {e}")
-        return
-
-def get_frequency(freq: str, type: str) -> str:
-    
-    if '*/' in freq:
-        freq = freq.replace('*/', '')
-        stop = 60 if type == 'minutes' else 24
-        freq_list = [str(i) for i in range(0, stop, int(freq))]
-        return ' '.join(freq_list)
-    return freq
+        return        
 
 
 if __name__ == '__main__':
