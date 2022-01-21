@@ -10,9 +10,10 @@ def parse_cron() -> None:
             return
         
         result = {
-            'minutes' : get_minute_frequency(arguments[0]),
-            'hour': get_hour_frequency(arguments[1])
+            'minutes' : get_frequency(arguments[0], 'minutes'),
+            'hour': get_frequency(arguments[1], 'hour')
         }
+        print(result)
 
     except IndexError:
         print(f"Invalid command. The command should be ran with a string of arguments.")
@@ -21,21 +22,15 @@ def parse_cron() -> None:
         print(f"Something went wrong: {e}")
         return
 
-def get_minute_frequency(minute_string: str) -> str:
+def get_frequency(freq: str, type: str) -> str:
     
-    if '*/' in minute_string:
-        minute_string = minute_string.replace('*/', '')
-        minutes_list = [str(i) for i in range(0, 60, int(minute_string))]
-        return ' '.join(minutes_list)
-    return minute_string
+    if '*/' in freq:
+        freq = freq.replace('*/', '')
+        stop = 60 if type == 'minutes' else 24
+        freq_list = [str(i) for i in range(0, stop, int(freq))]
+        return ' '.join(freq_list)
+    return freq
 
-def get_hour_frequency(hour_string: str) -> str:
-
-    if '*/' in hour_string:
-        hour_string = hour_string.replace('*/', '')
-        hours_list = [str(i) for i in range(0, 24, int(hour_string))]
-        return ' '.join(hours_list)
-    return hour_string
 
 if __name__ == '__main__':
     parse_cron()
