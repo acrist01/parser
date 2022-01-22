@@ -2,6 +2,7 @@ import sys
 
 from services.calendar import Calendar
 from services.parser import Parser
+from services.formatter import Formatter
 
 def parse_cron() -> None:
     
@@ -12,8 +13,11 @@ def parse_cron() -> None:
             print(f"Invalid command. There should be 6 arguments, following the pattern: {command_format}")
             return
         
+        column_size = 14
+
         calendar = Calendar()
-        parser = Parser(calendar)
+        formatter = Formatter(column_size)
+        parser = Parser(calendar, formatter)
         result = parser.parse(arguments)
         print(result)
 
