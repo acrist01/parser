@@ -12,7 +12,7 @@ class Parser(object):
             'hour': self.get_frequency(arguments[1], 'hour'),
             'day of month': self.get_day(arguments[2], 'month'),
             'month': self.get_month(arguments[3]),
-            'day of week': self.get_day(arguments[4], 'day'),
+            'day of week': self.get_day(arguments[4], 'week'),
             'command': arguments[5]
         }
 
@@ -34,7 +34,7 @@ class Parser(object):
 
     def get_day(self, frequency: str, type: str) -> str:
         
-        stop = 7 if type == 'day' else self._calendar.get_days_in_month()
+        stop = 7 if type == 'week' else self._calendar.get_days_in_month()
         if '*' == frequency:
             frequency_list = [str(i) for i in range(1, stop + 1)]
             return ' '.join(frequency_list)
@@ -61,4 +61,3 @@ class Parser(object):
             frequency_list = frequency.split('-')
             frequency_list = [str(i) for i in range(int(frequency_list[0]), int(frequency_list[1]) + 1)]
             return ' '.join(frequency_list)
-        return frequency
