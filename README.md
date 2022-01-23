@@ -14,8 +14,9 @@ The output will be formatted as a table with the field name taking the first 14 
 
 Instructions
 ------------
-In order to run this script locally, you should have python3 and pytest installed on your machine. <br>
-From the root directory (the same that contains app.py), open your terminal and run: `<python3 app.py <argument_string>`
+In order to run this script locally, you should have python3 installed on your machine. <br>
+From the root directory (the same that contains app.py), open your terminal and run: `python3 app.py <argument_string>`
 
-
-
+Testing
+-------
+Unit tests are located in the tests directory. In order to run them, you will need to install pytest module. Once that is done, simply run pytest.
