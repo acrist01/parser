@@ -19,4 +19,4 @@ From the root directory (the same that contains app.py), open your terminal and 
 
 Testing
 -------
-Unit tests are located in the tests directory. In order to run them, you will need to install pytest module. Once that is done, simply run pytest.
+Unit tests are located in the tests directory. In order to run them, you will need to install the pytest module. Once that is done, simply run pytest.
