@@ -1,31 +1,21 @@
 Cron Parser
 =========
-
 Description
 -----------
 This is a command line script which parses a cron string and expands each field
 to show the times at which it will run.
-I only consider the standard cron format with five time fields (minute, hour, day of
-month, month, and day of week) plus a command.
+It only considers the standard cron format with five time fields (minute, hour, day of month, month, and day of week) plus a command. <br>
 
- The input will be on a single line.
-The cron string will be passed to your application as a single argument.
-~$ your-program "*/15 0 1,15 * 1-5 /usr/bin/find"
+The input will be on a single line.
+The application accepts the cron string as a single argument, in the format 
+`<minutes> <hour> <day_of_month> <<month> <day of week> <command>`. It will raise an error if it receives less or more than this.  <br>
 
+The output will be formatted as a table with the field name taking the first 14 columns and the times as a space-separated list following it. <br>
 
 Instructions
 ------------
-From the application root, run  `<python3 parse.py "*/15 0 1,15 * 1-5 <command>"`
-The answer should be similar to below: <br>
+In order to run this script locally, you should have python3 and pytest installed on your machine. <br>
+From the root directory (the same that contains app.py), open your terminal and run: `<python3 app.py <argument_string>`
 
-minute 0 15 30 45
-hour 0
-day of month 1 15
-month 1 2 3 4 5 6 7 8 9 10 11 12
-day of week 1 2 3 4 5
-command `<command>`
-
-Caveats
--------
 
 
